@@ -1,11 +1,18 @@
 package core.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
 
-    @FindBy(className = "login")
+    @FindBy(className = "container")
+    public By homePage;
+
+    @FindBy(id = "login_form")
+    public By loginForm;
+
+    @FindBy(css = ".login")
     public WebElement loginPanel;
 
     @FindBy(id = "email")

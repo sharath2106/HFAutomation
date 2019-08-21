@@ -1,6 +1,7 @@
 package core.pages;
 
 import core.webdriver.DriverFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -34,6 +35,14 @@ public class BasePage {
         }
     }
 
+    protected void waitForElementToBeLocatedInThePage(By element) {
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        } catch (Exception ce) {
+            System.err.println("Exception - " + ce.getMessage());
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement elem) {
         try {
             return elem.isDisplayed();
@@ -46,14 +55,6 @@ public class BasePage {
         try {
             elem.clear();
             elem.sendKeys(keys);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
-
-    protected void switchToAlertAndAccept(WebDriver driver) {
-        try {
-            driver.switchTo().alert().accept();
         } catch (Exception e) {
             e.getMessage();
         }

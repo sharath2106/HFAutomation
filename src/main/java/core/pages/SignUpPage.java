@@ -1,9 +1,17 @@
 package core.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SignUpPage {
+
+
+    @FindBy(id = "account-creation_form")
+    public WebElement newAccountCreationForm;
+
+    @FindBy(id = "create-account_form")
+    public By createAccountForm;
 
     @FindBy(id = "email_create")
     public WebElement emailTextBoxCreateAccount;
