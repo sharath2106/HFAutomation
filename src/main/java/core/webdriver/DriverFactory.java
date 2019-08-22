@@ -15,7 +15,7 @@ public class DriverFactory {
         return driver;
     }
 
-    public void setUp() {
+    public void driverSetUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--kiosk");
@@ -26,7 +26,7 @@ public class DriverFactory {
         driver.get("http://automationpractice.com/index.php");
     }
 
-    public void tearDown() {
+    public void driverTearDown() {
         driver.quit();
     }
 }

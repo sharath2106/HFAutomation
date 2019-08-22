@@ -20,7 +20,7 @@ public class hooks {
 
     @Before
     public void setUp() {
-        driver.setUp();
+        driver.driverSetUp();
     }
 
     @After (order = 1)
@@ -38,6 +38,6 @@ public class hooks {
 
     @After (order = 0)
     public void tearDown() {
-        driver.tearDown();
+        driver.driverTearDown();
     }
 }
