@@ -12,7 +12,7 @@ public class LoginPage {
     @FindBy(id = "login_form")
     public By loginForm;
 
-    @FindBy(css = ".login")
+    @FindBy(className = "login")
     public WebElement loginPanel;
 
     @FindBy(id = "email")

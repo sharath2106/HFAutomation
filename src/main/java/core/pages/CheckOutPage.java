@@ -8,7 +8,7 @@ public class CheckOutPage {
     @FindBy(linkText = "Women")
     public WebElement womenCategory;
 
-    @FindBy(xpath = "//a[@title='Faded Short Sleeve T-shirts']/ancestor::li")
+    @FindBy(partialLinkText = "Faded Short Sleeve T-shirts")
     public WebElement womenCategoryDress;
 
     @FindBy(name = "Submit")
@@ -47,7 +47,7 @@ public class CheckOutPage {
     @FindBy(xpath = "//*[@class='cheque-indent']/strong")
     public WebElement orderConfirmationOnMyStoreBanner;
 
-    String orderConfirmationURLPath = "controller=order-confirmation";
+    public String orderConfirmationURLPath = "controller=order-confirmation";
 
 
 }

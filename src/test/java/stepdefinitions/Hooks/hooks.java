@@ -18,7 +18,7 @@ public class hooks {
         driver = new DriverFactory();
     }
 
-    @Before
+    @Before()
     public void setUp() {
         driver.driverSetUp();
     }

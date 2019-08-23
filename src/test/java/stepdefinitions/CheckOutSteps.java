@@ -1,40 +1,35 @@
 package stepdefinitions;
 
+import core.facades.CheckOutFacade;
 import core.pages.BasePage;
-
-import static org.testng.Assert.assertTrue;
+import cucumber.api.java.en.Then;
 
 public class CheckOutSteps extends BasePage {
 
-    String existingUserEmail = "hf_challenge_123456@hf123456.com";
-    String existingUserPassword = "12345678";
+    private CheckOutFacade checkOutFacade;
 
-    public void checkoutTest() throws InterruptedException {
-        loginPage.loginPanel.click();
-        loginPage.emailTextBox.sendKeys(existingUserEmail);
-        loginPage.passwordTextBox.sendKeys(existingUserPassword);
-        loginPage.submitButtonLoginPanel.click();
-        checkOutPage.womenCategory.click();
-        checkOutPage.womenCategoryDress.click();
-        Thread.sleep(5000);
-        checkOutPage.womenCategoryDress.click();
-        Thread.sleep(5000);
-//        WebDriverWait wait = new WebDriverWait(driver, 60);
-//        wait.until(ExpectedConditions.visibilityOf(checkOutPage.womenCategoryDressSelection));
-        checkOutPage.womenCategoryDressSelection.click();
-        checkOutPage.proceedToCheckout.click();
-        checkOutPage.proceedToCheckoutFromCart.click();
-        checkOutPage.processAddressOfCustomer.click();
-        checkOutPage.uniformcgv.click();
-        checkOutPage.termsAndConditions.click();
-        checkOutPage.bankWirePayment.click();
-        checkOutPage.clickOrderConfirmation.click();
-//        WebElement heading = wait.until(ExpectedConditions.visibilityOf(loginPage.welcomeBannerAfterLogin));
-//
-//        assertEquals("ORDER CONFIRMATION", heading.getText());
-        assertTrue(checkOutPage.orderConfirmationFirstStep.isDisplayed());
-        assertTrue(checkOutPage.orderConfirmationSecondStep.isDisplayed());
-        assertTrue(checkOutPage.orderConfirmationOnMyStoreBanner.getText().contains("Your order on My Store is complete."));
-//        assertTrue(driver.getCurrentUrl().contains(checkOutPage.orderConfirmationURLPath));
+    public CheckOutSteps() {
+        checkOutFacade =  new CheckOutFacade();
+    }
+
+    @Then("I select Women dress from Women category")
+    public void selectDressOfTheProductInTheSelectedCategory() {
+        checkOutFacade.selectDress();
+    }
+
+
+    @Then("I should add the product to the cart")
+    public void addingTheProductToCartForPurchase() {
+        checkOutFacade.addProductToCart();
+    }
+
+    @Then("I should be able to Proceed to Checkout from the summary page")
+    public void proceedToCheckoutFromSummaryPage() {
+        checkOutFacade.proceedToCheckoutPageFromSummaryPage();
+    }
+
+    @Then("I should be able to complete payment and verify the order confirmation")
+    public void completePaymentForProductAndConfirmOrder() {
+        checkOutFacade.performPaymentForTheProductAndValidateOrderConfirmation();
     }
 }

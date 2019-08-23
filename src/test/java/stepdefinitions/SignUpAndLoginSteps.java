@@ -1,13 +1,12 @@
 package stepdefinitions;
 
 import core.facades.LoginFacade;
-import core.pages.BasePage;
 import core.facades.SignUpFacade;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class SignUpAndLoginSteps extends BasePage {
+public class SignUpAndLoginSteps {
 
 
     private SignUpFacade signUpFacade;
@@ -57,4 +56,6 @@ public class SignUpAndLoginSteps extends BasePage {
     public void clickOnRegisterToRegisterTheUser() {
         signUpFacade.registerUserByClickingOnRegisterButton();
     }
+
+
 }
