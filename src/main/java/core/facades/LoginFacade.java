@@ -1,11 +1,16 @@
 package core.facades;
 
+import core.dto.LoginDto;
 import core.pages.BasePage;
+import lombok.AllArgsConstructor;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+@AllArgsConstructor
 public class LoginFacade extends BasePage {
 
+    private LoginDto loginDto;
 
     public void waitAndClickOnSignInButtonInHomePage(){
         waitForElementToBeLocatedInThePage(loginPage.homePage);
@@ -18,8 +23,10 @@ public class LoginFacade extends BasePage {
         String existingUserPassword = "12345678";
 
         waitForElementToBeLocatedInThePage(loginPage.loginForm);
-        sendKeys(loginPage.emailTextBox, existingUserEmail);
-        sendKeys(loginPage.passwordTextBox, existingUserPassword);
+//        sendKeys(loginPage.emailTextBox, existingUserEmail);
+//        sendKeys(loginPage.passwordTextBox, existingUserPassword);
+        sendKeys(loginPage.emailTextBox, loginDto.getEmailAddress());
+        sendKeys(loginPage.passwordTextBox, loginDto.getPassword());
         loginPage.submitButtonLoginPanel.click();
     }
 
