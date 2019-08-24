@@ -1,16 +1,29 @@
-package core.facades;
+package core.actions;
 
-import core.dto.LoginDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import core.models.Login;
 import core.pages.BasePage;
-import lombok.AllArgsConstructor;
+
+import java.io.File;
+import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-@AllArgsConstructor
 public class LoginFacade extends BasePage {
 
-    private LoginDto loginDto;
+    private Login login;
+    private ObjectMapper objectMapper;
+
+    public LoginFacade() {
+        objectMapper = new ObjectMapper(new YAMLFactory());
+        try {
+            login = objectMapper.readValue(new File("login.yaml"), Login.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void waitAndClickOnSignInButtonInHomePage(){
         waitForElementToBeLocatedInThePage(loginPage.homePage);
@@ -19,14 +32,9 @@ public class LoginFacade extends BasePage {
     }
 
     public void enterUsernamePasswordAndLoginByClickingSubmitbutton() {
-        String existingUserEmail = "hf_challenge_123456@hf123456.com";
-        String existingUserPassword = "12345678";
-
         waitForElementToBeLocatedInThePage(loginPage.loginForm);
-//        sendKeys(loginPage.emailTextBox, existingUserEmail);
-//        sendKeys(loginPage.passwordTextBox, existingUserPassword);
-        sendKeys(loginPage.emailTextBox, loginDto.getEmailAddress());
-        sendKeys(loginPage.passwordTextBox, loginDto.getPassword());
+        sendKeys(loginPage.emailTextBox, login.getEmailAddress());
+        sendKeys(loginPage.passwordTextBox, login.getPassword());
         loginPage.submitButtonLoginPanel.click();
     }
 

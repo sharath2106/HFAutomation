@@ -1,4 +1,4 @@
-package core.facades;
+package core.actions;
 
 import core.pages.BasePage;
 import org.openqa.selenium.By;
@@ -21,8 +21,8 @@ public class SignUpFacade extends BasePage {
     }
 
     public void enterPersonalInformationOfNewUserToCreateAccount(){
-        String name = "Firstname";
-        String surname = "Lastname";
+        String name = "Joe";
+        String surname = "Black";
         signUpPage.selectGender.click();
         signUpPage.customersFirstName.sendKeys(name);
         signUpPage.customerLastName.sendKeys(surname);

@@ -1,11 +1,11 @@
-package core.facades;
+package core.actions;
 
 import core.pages.BasePage;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class CheckOutFacade extends BasePage {
+public class CheckoutFacade extends BasePage {
 
     public void selectDress() {
         try{
