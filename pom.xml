@@ -93,13 +93,12 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
           <parallel>methods</parallel>
         </configuration>
-        <!--<configuration>-->
-        <!--<includes>-->
-        <!--<exclude>RunCukesTest.java</exclude>-->
-        <!--</includes>-->
-        <!--</configuration>-->
+
       </plugin>
     </plugins>
   </build>
