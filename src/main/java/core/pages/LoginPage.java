@@ -35,4 +35,6 @@ public class LoginPage {
 
     @FindBy(className = "logout")
     public WebElement logoutIcon;
+
+    public final String userHomePageURLPath = "controller=my-account";
 }

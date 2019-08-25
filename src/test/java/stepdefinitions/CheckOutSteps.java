@@ -1,35 +1,34 @@
 package stepdefinitions;
 
-import core.facades.CheckOutFacade;
+import core.actions.CheckoutFacade;
 import core.pages.BasePage;
 import cucumber.api.java.en.Then;
 
 public class CheckOutSteps extends BasePage {
 
-    private CheckOutFacade checkOutFacade;
+    private CheckoutFacade checkOut;
 
     public CheckOutSteps() {
-        checkOutFacade =  new CheckOutFacade();
+        checkOut =  new CheckoutFacade();
     }
 
     @Then("I select Women dress from Women category")
     public void selectDressOfTheProductInTheSelectedCategory() {
-        checkOutFacade.selectDress();
+        checkOut.selectDress();
     }
-
 
     @Then("I should add the product to the cart")
     public void addingTheProductToCartForPurchase() {
-        checkOutFacade.addProductToCart();
+        checkOut.addProductToCart();
     }
 
     @Then("I should be able to Proceed to Checkout from the summary page")
     public void proceedToCheckoutFromSummaryPage() {
-        checkOutFacade.proceedToCheckoutPageFromSummaryPage();
+        checkOut.proceedToCheckoutPageFromSummaryPage();
     }
 
     @Then("I should be able to complete payment and verify the order confirmation")
     public void completePaymentForProductAndConfirmOrder() {
-        checkOutFacade.performPaymentForTheProductAndValidateOrderConfirmation();
+        checkOut.performPaymentForTheProductAndValidateOrderConfirmation();
     }
 }

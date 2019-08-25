@@ -8,17 +8,8 @@ import static org.testng.Assert.assertTrue;
 public class CheckoutFacade extends BasePage {
 
     public void selectDress() {
-        try{
-            Thread.sleep(5000);
-            checkOutPage.womenCategory.click();
-            checkOutPage.womenCategoryDress.click();
-            Thread.sleep(5000);
-//            checkOutPage.womenCategoryDress.click();
-            Thread.sleep(5000);
-        } catch (InterruptedException ie){
-            ie.printStackTrace();
-        }
-
+        checkOutPage.womenCategory.click();
+        checkOutPage.womenCategoryDress.click();
     }
 
     public void addProductToCart() {

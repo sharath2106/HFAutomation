@@ -1,7 +1,7 @@
 package stepdefinitions;
 
-import core.facades.LoginFacade;
-import core.facades.SignUpFacade;
+import core.actions.LoginFacade;
+import core.actions.SignUpFacade;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -43,7 +43,7 @@ public class SignUpAndLoginSteps {
     }
 
     @Then("I should enter the personal details of the user")
-    public void enterPersonalDetailsOftheUser() {
+    public void enterPersonalDetailsOfTheUser() {
         signUpFacade.enterPersonalInformationOfNewUserToCreateAccount();
     }
 

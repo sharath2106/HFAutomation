@@ -1,18 +1,23 @@
 package core.actions;
 
+import core.config.RandomGenerator;
+import core.models.SignUp;
 import core.pages.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-import java.util.Date;
 
 public class SignUpFacade extends BasePage {
 
-    public void enterEmailAddressAndRegisterUserByClickingCreateAccountButton(){
-        String timestamp = String.valueOf(new Date().getTime());
-        String email = "hf_challenge_" + timestamp + "@hf" + timestamp.substring(7) + ".com";
+    private SignUp signUp;
 
+
+    public SignUpFacade() {
+        signUp = new SignUp();
+
+        initializeSignUpData();
+    }
+
+    public void enterEmailAddressAndRegisterUserByClickingCreateAccountButton(){
         waitForElementToBeLocatedInThePage(signUpPage.createAccountForm);
-        signUpPage.emailTextBoxCreateAccount.sendKeys(email);
+        signUpPage.emailTextBoxCreateAccount.sendKeys(signUp.getEmailAddress());
         signUpPage.submitButtonCreateAccount.click();
     }
 
@@ -21,33 +26,26 @@ public class SignUpFacade extends BasePage {
     }
 
     public void enterPersonalInformationOfNewUserToCreateAccount(){
-        String name = "Joe";
-        String surname = "Black";
         signUpPage.selectGender.click();
-        signUpPage.customersFirstName.sendKeys(name);
-        signUpPage.customerLastName.sendKeys(surname);
-        signUpPage.enterPassword.sendKeys("Qwerty");
-        Select select = new Select(driver.findElement(By.id("days")));
-        select.selectByValue("1");
-        select = new Select(driver.findElement(By.id("months")));
-        select.selectByValue("1");
-        select = new Select(driver.findElement(By.id("years")));
-        select.selectByValue("2000");
+        signUpPage.customersFirstName.sendKeys(signUp.getFirstName());
+        signUpPage.customerLastName.sendKeys(signUp.getLastName());
+        signUpPage.enterPassword.sendKeys(signUp.getPassword());
+        selectDropDownByValue(signUpPage.selectDays, "1");
+        selectDropDownByValue(signUpPage.selectMonths, "1");
+        selectDropDownByValue(signUpPage.selectYears, "2000");
     }
 
     public void enterAddressAndPhoneNumberOfNewUserToCreateAccount() {
-        Select select;
-        signUpPage.enterCompany.sendKeys("Company");
-        signUpPage.enterAddress1.sendKeys("Qwerty, 123");
-        signUpPage.enterAddress2.sendKeys("zxcvb");
-        signUpPage.enterCity.sendKeys("Qwerty");
-        select = new Select(signUpPage.selectState);
-        select.selectByVisibleText("Colorado");
-        signUpPage.enterPostCode.sendKeys("12345");
-        signUpPage.enterOthers.sendKeys("Qwerty");
-        signUpPage.enterPhone.sendKeys("12345123123");
-        signUpPage.enterMobilePhone.sendKeys("12345123123");
-        signUpPage.enterAlias.sendKeys("hf");
+        signUpPage.enterCompany.sendKeys(signUp.getCompany());
+        signUpPage.enterAddress1.sendKeys(signUp.getAddressLine1());
+        signUpPage.enterAddress2.sendKeys(signUp.getAddressLine2());
+        signUpPage.enterCity.sendKeys(signUp.getCity());
+        selectDropDownByValue(signUpPage.selectState, "1");
+        signUpPage.enterPostCode.sendKeys(signUp.getPostalCode());
+        signUpPage.enterOthers.sendKeys(signUp.getAdditionalInformation());
+        signUpPage.enterPhone.sendKeys(signUp.getHomePhone());
+        signUpPage.enterMobilePhone.sendKeys(signUp.getMobilePhone());
+        signUpPage.enterAlias.sendKeys(signUp.getAddressAlias());
     }
 
     public void registerUserByClickingOnRegisterButton(){
@@ -55,7 +53,24 @@ public class SignUpFacade extends BasePage {
         signUpPage.submitAccount.click();
     }
 
+    private void initializeSignUpData() {
+        RandomGenerator randomGenerator = new RandomGenerator();
 
+        signUp.setEmailAddress(randomGenerator.getRandomString(5)+"@yourstore.com");
+        signUp.setFirstName(randomGenerator.getRandomString(7));
+        signUp.setLastName(randomGenerator.getRandomString(5));
+        signUp.setPassword(randomGenerator.getRandomAlphanumeric(8));
+        signUp.setCompany(randomGenerator.getRandomString(6));
+        signUp.setAddressLine1(randomGenerator.getRandomString(6));
+        signUp.setAddressLine2(randomGenerator.getRandomString(6));
+        signUp.setCity(randomGenerator.getRandomString(6));
+        signUp.setState(randomGenerator.getRandomString(6));
+        signUp.setPostalCode(randomGenerator.getRandomNumber(5));
+        signUp.setCountry(randomGenerator.getRandomString(6));
+        signUp.setAdditionalInformation(randomGenerator.getRandomString(6));
+        signUp.setHomePhone(randomGenerator.getRandomNumber(10));
+        signUp.setMobilePhone(randomGenerator.getRandomNumber(10));
+        signUp.setAddressAlias(randomGenerator.getRandomString(6));
 
-
+    }
 }

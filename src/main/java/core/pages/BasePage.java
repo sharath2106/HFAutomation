@@ -21,7 +21,7 @@ public class BasePage {
 
     public BasePage() {
         driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 60);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         signUpPage = PageFactory.initElements(driver, SignUpPage.class);
         checkOutPage = PageFactory.initElements(driver, CheckOutPage.class);
@@ -60,9 +60,9 @@ public class BasePage {
         }
     }
 
-    protected void selectValueDropDown(WebElement element, String option) {
+    protected void selectDropDownByValue(WebElement element, String option) {
         Select select = new Select(element);
-        select.selectByVisibleText(option);
+        select.selectByValue(option);
     }
 
     protected void waitAndAssert(WebElement element, String assertMsg) {
