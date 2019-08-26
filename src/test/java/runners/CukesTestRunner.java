@@ -1,5 +1,7 @@
 package runners;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import core.webdriver.DriverFactory;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
@@ -17,10 +19,21 @@ import java.io.IOException;
 public class CukesTestRunner extends AbstractTestNGCucumberTests {
 
     private DriverFactory driverFactory;
+    private static ExtentTest test;
+    private static ExtentReports reports;
 
     public CukesTestRunner() {
         driverFactory = new DriverFactory();
     }
+
+
+    @BeforeClass
+    public static void startTest()
+    {
+        reports = new ExtentReports(System.getProperty("user.dir")+"/target/ExtentReportResults.html");
+        test = reports.startTest("ExtentDemo");
+    }
+
 
     @BeforeMethod
     @Parameters({"browser"})
@@ -44,6 +57,12 @@ public class CukesTestRunner extends AbstractTestNGCucumberTests {
     @AfterMethod
     public void tearDown() {
         driverFactory.driverTearDown();
+    }
+
+    @AfterClass
+    public static void endTest(){
+        reports.endTest(test);
+        reports.flush();
     }
 
 }
