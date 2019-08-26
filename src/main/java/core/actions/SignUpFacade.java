@@ -1,6 +1,6 @@
 package core.actions;
 
-import core.config.RandomGenerator;
+import core.config.Utilities;
 import core.models.SignUp;
 import core.pages.BasePage;
 
@@ -54,7 +54,7 @@ public class SignUpFacade extends BasePage {
     }
 
     private void initializeSignUpData() {
-        RandomGenerator randomGenerator = new RandomGenerator();
+        Utilities randomGenerator = new Utilities();
 
         signUp.setEmailAddress(randomGenerator.getRandomString(5)+"@yourstore.com");
         signUp.setFirstName(randomGenerator.getRandomString(7));

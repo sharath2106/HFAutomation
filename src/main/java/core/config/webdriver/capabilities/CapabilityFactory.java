@@ -1,4 +1,4 @@
-package core.webdriver.capabilities;
+package core.config.webdriver.capabilities;
 
 import org.openqa.selenium.Capabilities;
 

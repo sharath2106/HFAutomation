@@ -14,7 +14,7 @@ public class CheckOutSteps extends BasePage {
 
     @Then("I select Women dress from Women category")
     public void selectDressOfTheProductInTheSelectedCategory() {
-        checkOut.selectDress();
+        checkOut.selectDressFromCategory();
     }
 
     @Then("I should add the product to the cart")

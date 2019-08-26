@@ -4,10 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import core.models.Login;
 import core.pages.BasePage;
-
 import java.io.File;
 import java.io.IOException;
-
+import static core.config.Constant.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -46,7 +45,7 @@ public class LoginFacade extends BasePage {
     private void initializeLoginData() {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         try {
-            login = objectMapper.readValue(new File(System.getProperty("user.dir")+"/src/main/resources/login.yaml"), Login.class);
+            login = objectMapper.readValue(new File(pathToLoginDataYaml), Login.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

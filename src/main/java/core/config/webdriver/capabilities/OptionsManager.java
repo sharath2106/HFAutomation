@@ -1,4 +1,4 @@
-package core.webdriver.capabilities;
+package core.config.webdriver.capabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeOptions;

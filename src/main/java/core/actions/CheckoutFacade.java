@@ -7,7 +7,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckoutFacade extends BasePage {
 
-    public void selectDress() {
+    public void selectDressFromCategory() {
         checkOutPage.womenCategory.click();
         checkOutPage.womenCategoryDress.click();
     }
