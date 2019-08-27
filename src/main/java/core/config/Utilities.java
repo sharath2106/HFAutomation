@@ -3,6 +3,7 @@ package core.config;
 import core.config.webdriver.DriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
@@ -16,14 +17,21 @@ import static core.config.Constant.pathToFailedScreenshotsReport;
 
 public class Utilities {
 
+    private Logger logger;
+
+
+    public Utilities() {
+        logger = Logger.getRootLogger();
+    }
+
     public void takeScreenshotsForFailedTests(ITestResult result){
-        System.out.println("***** Error "+result.getName()+" test has failed *****");
         Date date = new Date();
         String methodNameOfTest = result.getName().trim();
         File sourceFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(sourceFile, new File(pathToFailedScreenshotsReport+methodNameOfTest+date.getTime()+".png"));
+            FileUtils.copyFile(sourceFile, new File(pathToFailedScreenshotsReport + methodNameOfTest + " - " + date.getTime() + ".png"));
         } catch (IOException e) {
+            logger.error("Failed to take screenshot");
             e.printStackTrace();
         }
     }
@@ -40,6 +48,7 @@ public class Utilities {
                 file.delete();
             }
         } catch (Exception ex) {
+            logger.error("Failed to delete screenshots files/folder");
             ex.printStackTrace();
         }
     }
@@ -49,6 +58,7 @@ public class Utilities {
         try {
             properties.load(new FileInputStream(pathToPropertiesFile));
         } catch (IOException e) {
+            logger.error("Failed to fetch property from file");
             e.printStackTrace();
         }
         return properties.getProperty(propertiesToGet);

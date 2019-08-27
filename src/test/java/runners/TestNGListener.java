@@ -1,6 +1,7 @@
 package runners;
 
 import core.config.Utilities;
+import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -8,9 +9,11 @@ import org.testng.ITestResult;
 public class TestNGListener implements ITestListener {
 
     private Utilities utilities;
+    private Logger logger;
 
     public TestNGListener() {
         utilities  = new Utilities();
+        logger = Logger.getRootLogger();
     }
 
     @Override
@@ -24,6 +27,7 @@ public class TestNGListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult result) {
+        logger.error("***** "+  result.getName() +" test has failed *****");
         utilities.takeScreenshotsForFailedTests(result);
     }
 

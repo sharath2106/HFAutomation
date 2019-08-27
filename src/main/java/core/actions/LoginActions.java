@@ -22,14 +22,12 @@ public class LoginActions extends BasePage {
     }
 
     public void waitAndClickOnSignInButtonInHomePage(){
-        waitForElementToBeLocatedInThePage(loginPage.homePage);
         waitForElementToBeClickable(loginPage.loginPanel);
         click(loginPage.loginPanel, LoginElements.LOGIN.getValue());
 
     }
 
     public void enterUsernamePasswordAndLoginByClickingSubmitbutton() {
-        waitForElementToBeLocatedInThePage(loginPage.loginForm);
         sendKeys(loginPage.emailTextBox, login.getEmailAddress(), LoginElements.EMAIL_ADDRESS.getValue());
         sendKeys(loginPage.passwordTextBox, login.getPassword(), LoginElements.PASSWORD.getValue());
         click(loginPage.submitButtonLoginPanel, LoginElements.SUBMIT.getValue());
@@ -42,7 +40,7 @@ public class LoginActions extends BasePage {
         assertEquals(LoginElements.MY_ACCOUNT.getValue(), loginPage.landingPageHeaderAfterLogin.getText());
 //        assertEquals(firstName + " " + lastName, loginPage.userNameInAccount.getText());
         assertTrue(loginPage.welcomeBannerAfterLogin.getText().contains(LoginElements.WELCOME_TO_MY_ACCOUNT.getValue()));
-        assertTrue(loginPage.logoutIcon.isDisplayed());
+        assertTrue(isElementDisplayed(loginPage.logoutIcon, LoginElements.LOGOUT.getValue()));
         assertTrue(driver.getCurrentUrl().contains(loginPage.userHomePageURLPath));
     }
 
@@ -51,6 +49,7 @@ public class LoginActions extends BasePage {
         try {
             login = objectMapper.readValue(new File(pathToLoginDataYaml), Login.class);
         } catch (IOException e) {
+            logger.error("Failed to initialize data for Login");
             e.printStackTrace();
         }
     }

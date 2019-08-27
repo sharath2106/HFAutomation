@@ -14,7 +14,9 @@ public enum CheckoutElements {
     UNIFORM_CGV("Uniform CGV"),
     TERMS_AND_CONDITIONS("Terms and conditions"),
     WIRE_PAYMENT("Bank wire payment"),
-    CLICK_ORDER_CONFIRMATION("Order cofirmation");
+    CLICK_ORDER_CONFIRMATION("Order cofirmation"),
+    ORDER_FIRST_STEP("Order confirmation first step"),
+    ORDER_SECOND_STEP("Order confirmation second step");
 
     private String value;
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum SignUpElements {
 
+    NEW_ACCOUNT_FORM("New account creation form"),
     GENDER("Gender"),
     FIRST_NAME("First name"),
     LAST_NAME("Last name"),

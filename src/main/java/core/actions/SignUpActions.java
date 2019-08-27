@@ -5,6 +5,7 @@ import core.actions.enums.LoginElements;
 import core.actions.enums.SignUpElements;
 import core.models.SignUp;
 import core.pages.BasePage;
+import org.testng.Assert;
 
 public class SignUpActions extends BasePage {
 
@@ -25,7 +26,8 @@ public class SignUpActions extends BasePage {
 
 
     public void validateLandingPageToCreateAccountForNewUser(){
-        waitAndAssert(signUpPage.newAccountCreationForm, "User not landed in the create account form page");
+        waitForElementToBeClickable(signUpPage.newAccountCreationForm);
+        Assert.assertTrue(isElementDisplayed(signUpPage.newAccountCreationForm, SignUpElements.NEW_ACCOUNT_FORM.getValue()), "User not landed in the create account form page");
     }
 
     public void enterPersonalInformationOfNewUserToCreateAccount(){
@@ -33,9 +35,9 @@ public class SignUpActions extends BasePage {
         sendKeys(signUpPage.customersFirstName, signUp.getFirstName(),SignUpElements.FIRST_NAME.getValue());
         sendKeys(signUpPage.customerLastName, signUp.getLastName(), SignUpElements.LAST_NAME.getValue());
         sendKeys(signUpPage.enterPassword, signUp.getPassword(), LoginElements.PASSWORD.getValue());
-//        selectDropDownByValue(signUpPage.selectDays, "1");
-//        selectDropDownByValue(signUpPage.selectMonths, "1");
-//        selectDropDownByValue(signUpPage.selectYears, "2000");
+        selectDropDownByValue(signUpPage.selectDays, "1", SignUpElements.DAYS.getValue());
+        selectDropDownByValue(signUpPage.selectMonths, "1",SignUpElements.MONTHS.getValue());
+        selectDropDownByValue(signUpPage.selectYears, "2000",SignUpElements.YEARS.getValue());
     }
 
     public void enterAddressAndPhoneNumberOfNewUserToCreateAccount() {
@@ -48,7 +50,7 @@ public class SignUpActions extends BasePage {
         sendKeys(signUpPage.enterPhone, signUp.getHomePhone(), SignUpElements.HOME_PHONE.getValue());
         sendKeys(signUpPage.enterMobilePhone, signUp.getMobilePhone(), SignUpElements.MOBILE_PHONE.getValue());
         sendKeys(signUpPage.enterAlias, signUp.getAddressAlias(), SignUpElements.ADDRESS_ALIAS.getValue());
-//        selectDropDownByValue(signUpPage.selectState, "1");
+        selectDropDownByValue(signUpPage.selectState, "1", SignUpElements.STATE.getValue());
     }
 
     public void registerUserByClickingOnRegisterButton(){

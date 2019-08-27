@@ -32,8 +32,8 @@ public class CheckoutActions extends BasePage {
         waitForElementToBeClickable(loginPage.landingPageHeaderAfterLogin);
 
         assertEquals("ORDER CONFIRMATION", loginPage.landingPageHeaderAfterLogin.getText());
-        assertTrue(isElementDisplayed(checkOutPage.orderConfirmationFirstStep));
-        assertTrue(isElementDisplayed(checkOutPage.orderConfirmationSecondStep));
+        assertTrue(isElementDisplayed(checkOutPage.orderConfirmationFirstStep, CheckoutElements.ORDER_FIRST_STEP.getValue()));
+        assertTrue(isElementDisplayed(checkOutPage.orderConfirmationSecondStep, CheckoutElements.ORDER_SECOND_STEP.getValue()));
         assertTrue(checkOutPage.orderConfirmationOnMyStoreBanner.getText().contains("Your order on My Store is complete."));
         assertTrue(driver.getCurrentUrl().contains(checkOutPage.orderConfirmationURLPath));
     }

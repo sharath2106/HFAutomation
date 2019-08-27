@@ -9,6 +9,7 @@ public enum LoginElements {
     EMAIL_ADDRESS("Email address"),
     PASSWORD("Password"),
     SUBMIT("Submit"),
+    LOGOUT("Logout icon"),
     MY_ACCOUNT("MY ACCOUNT"),
     WELCOME_TO_MY_ACCOUNT("Welcome to your account.");
 

@@ -18,7 +18,7 @@ public class BasePage {
     protected final LoginPage loginPage;
     protected final SignUpPage signUpPage;
     protected final CheckOutPage checkOutPage;
-    protected Logger logger;
+    public Logger logger;
 
 
     public BasePage() {
@@ -34,7 +34,8 @@ public class BasePage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
         } catch (Exception ce) {
-            System.err.println("Exception - " + ce.getMessage());
+            logger.error("Element is not clickable");
+            ce.printStackTrace();
         }
     }
 
@@ -42,14 +43,18 @@ public class BasePage {
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(element));
         } catch (Exception ce) {
-            System.err.println("Exception - " + ce.getMessage());
+            logger.error("Element is not located in the page");
+            ce.printStackTrace();
         }
     }
 
-    protected boolean isElementDisplayed(WebElement elem) {
+    protected boolean isElementDisplayed(WebElement element, String elementName) {
         try {
-            return elem.isDisplayed();
+            logger.info("Element "+elementName+" is verified");
+            return element.isDisplayed();
         } catch (Exception e) {
+            logger.error("Element "+elementName+" is not verified");
+            e.printStackTrace();
             return false;
         }
     }
@@ -60,26 +65,28 @@ public class BasePage {
             elem.clear();
             elem.sendKeys(keys);
         } catch (Exception e) {
+            logger.error("Typing "+ elementName +" FAILED");
             e.getMessage();
         }
     }
 
     protected void selectDropDownByValue(WebElement element, String option, String elementName) {
-        logger.info("Select the "+elementName+" value from the drop down ");
-        Select select = new Select(element);
-        select.selectByValue(option);
+        try {
+            logger.info("Select the "+elementName+" value from the drop down ");
+            Select select = new Select(element);
+            select.selectByValue(option);
+        } catch (Exception e){
+            logger.error("Selecting "+ elementName +" FAILED");
+            e.getMessage();
+        }
     }
 
-    protected void waitAndAssert(WebElement element, String assertMsg) {
-        waitForElementToBeClickable(element);
-        Assert.assertTrue(isElementDisplayed(element), assertMsg);
+    protected void click(WebElement webElement, String elementName) {
+        try {
+            logger.info("Clicking on the " + elementName + " element");
+            webElement.click();
+        } catch (Exception e) {
+            logger.error("Clicking " + elementName + " FAILED");
+        }
     }
-
-    protected void click(WebElement webElement, String element){
-        logger.info("Clicking on the " + element + " element");
-        webElement.click();
-    }
-
-
-
 }

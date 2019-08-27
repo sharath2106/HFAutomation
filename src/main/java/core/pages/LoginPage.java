@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
 
-    @FindBy(className = "container")
+    @FindBy(className = "columns-container")
     public By homePage;
 
     @FindBy(id = "login_form")
