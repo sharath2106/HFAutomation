@@ -6,19 +6,19 @@ import org.openqa.selenium.support.FindBy;
 public class CheckOutPage {
 
     @FindBy(linkText = "Women")
-    public WebElement womenCategory;
+    public WebElement dressCategory;
 
     @FindBy(partialLinkText = "Faded Short Sleeve T-shirts")
-    public WebElement womenCategoryDress;
+    public WebElement dressSelectedInTheCategory;
 
     @FindBy(name = "Submit")
-    public WebElement womenCategoryDressSelection;
+    public WebElement dressSelectionSubmit;
 
     @FindBy(xpath = "//*[@id='layer_cart']//a[@class and @title='Proceed to checkout']")
-    public WebElement proceedToCheckout;
+    public WebElement proceedToCheckoutFromLayerCart;
 
     @FindBy(xpath = "//*[contains(@class,'cart_navigation')]/a[@title='Proceed to checkout']")
-    public WebElement proceedToCheckoutFromCart;
+    public WebElement proceedToCheckoutFromCartPage;
 
     @FindBy(name = "processAddress")
     public WebElement processAddressOfCustomer;
