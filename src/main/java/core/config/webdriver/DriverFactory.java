@@ -2,6 +2,7 @@ package core.config.webdriver;
 
 import core.config.Utilities;
 import core.config.webdriver.capabilities.CapabilityFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,7 +16,8 @@ public class DriverFactory {
 
     private static WebDriver driver;
     private Utilities utilities;
-    private CapabilityFactory capabilityFactory =  new CapabilityFactory();
+    private CapabilityFactory capabilityFactory;
+    private Logger logger;
 
     public static WebDriver getDriver() {
         return driver;
@@ -23,10 +25,13 @@ public class DriverFactory {
 
     public DriverFactory() {
         utilities = new Utilities();
+        capabilityFactory = new CapabilityFactory();
+        logger = logger.getRootLogger();
     }
 
     public void driverSetUp(String browser) {
         try {
+            logger.info("***************** Launching browser *****************");
             driver = new RemoteWebDriver(new URL(utilities.getProperty(pathToConfigurationProperties, "SeleniumGridURL")),  capabilityFactory.getCapabilities(browser));
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -38,6 +43,7 @@ public class DriverFactory {
     }
 
     public void driverTearDown() {
+        logger.info("***************** Closing browser *****************");
         driver.quit();
     }
 }

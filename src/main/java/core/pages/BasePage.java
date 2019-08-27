@@ -1,6 +1,7 @@
 package core.pages;
 
 import core.config.webdriver.DriverFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,11 +18,13 @@ public class BasePage {
     protected final LoginPage loginPage;
     protected final SignUpPage signUpPage;
     protected final CheckOutPage checkOutPage;
+    protected Logger logger;
 
 
     public BasePage() {
         driver = DriverFactory.getDriver();
         wait = new WebDriverWait(driver, 60);
+        logger = Logger.getRootLogger();
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         signUpPage = PageFactory.initElements(driver, SignUpPage.class);
         checkOutPage = PageFactory.initElements(driver, CheckOutPage.class);
@@ -51,8 +54,9 @@ public class BasePage {
         }
     }
 
-    protected void sendKeys(WebElement elem, String keys) {
+    protected void sendKeys(WebElement elem, String keys, String elementName) {
         try {
+            logger.info("Typing "+ elementName+" in the textbox");
             elem.clear();
             elem.sendKeys(keys);
         } catch (Exception e) {
@@ -60,7 +64,8 @@ public class BasePage {
         }
     }
 
-    protected void selectDropDownByValue(WebElement element, String option) {
+    protected void selectDropDownByValue(WebElement element, String option, String elementName) {
+        logger.info("Select the "+elementName+" value from the drop down ");
         Select select = new Select(element);
         select.selectByValue(option);
     }
@@ -68,6 +73,11 @@ public class BasePage {
     protected void waitAndAssert(WebElement element, String assertMsg) {
         waitForElementToBeClickable(element);
         Assert.assertTrue(isElementDisplayed(element), assertMsg);
+    }
+
+    protected void click(WebElement webElement, String element){
+        logger.info("Clicking on the " + element + " element");
+        webElement.click();
     }
 
 

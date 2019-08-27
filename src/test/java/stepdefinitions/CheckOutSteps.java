@@ -1,15 +1,15 @@
 package stepdefinitions;
 
-import core.actions.CheckoutFacade;
+import core.actions.CheckoutActions;
 import core.pages.BasePage;
 import cucumber.api.java.en.Then;
 
 public class CheckOutSteps extends BasePage {
 
-    private CheckoutFacade checkOut;
+    private CheckoutActions checkOut;
 
     public CheckOutSteps() {
-        checkOut =  new CheckoutFacade();
+        checkOut =  new CheckoutActions();
     }
 
     @Then("I select Women dress from Women category")

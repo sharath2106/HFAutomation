@@ -5,7 +5,7 @@ import core.pages.BasePage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class CheckoutFacade extends BasePage {
+public class CheckoutActions extends BasePage {
 
     public void selectDressFromCategory() {
         checkOutPage.womenCategory.click();

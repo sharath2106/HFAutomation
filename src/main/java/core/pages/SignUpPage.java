@@ -72,5 +72,4 @@ public class SignUpPage {
 
     @FindBy(id = "submitAccount")
     public WebElement submitAccount;
-
 }
