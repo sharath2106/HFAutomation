@@ -31,10 +31,10 @@ public class DriverFactory {
 
     public void driverSetUp(String browser) {
         try {
-            logger.info("*********** Launching browser ***********");
+            logger.info("*********** Launching "+browser+" browser ***********");
             driver = new RemoteWebDriver(new URL(utilities.getProperty(pathToConfigurationProperties, "SeleniumGridURL")),  capabilityFactory.getCapabilities(browser));
         } catch (MalformedURLException e) {
-            logger.error("*********** Failed to launch browser ***********");
+            logger.error("*********** Failed to launch "+browser+" browser ***********");
             e.printStackTrace();
         }
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

@@ -14,7 +14,6 @@ public class SignUpActions extends BasePage {
 
     public SignUpActions() {
         signUp = new SignUp();
-
         initializeSignUpData();
     }
 

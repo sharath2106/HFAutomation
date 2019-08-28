@@ -14,7 +14,7 @@ public class CheckOutPage {
     @FindBy(name = "Submit")
     public WebElement dressSelectionSubmit;
 
-    @FindBy(xpath = "//*[@id='layer_cart']//a[@class and @title='Proceed to checkout']")
+    @FindBy(xpath = "//a[@title='Proceed to checkout']//span")
     public WebElement proceedToCheckoutFromLayerCart;
 
     @FindBy(xpath = "//*[contains(@class,'cart_navigation')]/a[@title='Proceed to checkout']")
