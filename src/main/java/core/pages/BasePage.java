@@ -18,7 +18,7 @@ public class BasePage {
     protected final LoginPage loginPage;
     protected final SignUpPage signUpPage;
     protected final CheckOutPage checkOutPage;
-    public Logger logger;
+    protected Logger logger;
 
 
     public BasePage() {

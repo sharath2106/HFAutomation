@@ -29,9 +29,9 @@ public class DriverFactory {
         logger = Logger.getRootLogger();
     }
 
-    public void driverSetUp(String browser) {
+    public void driverSetUp(String browser, String environment) {
         try {
-            logger.info("*********** Launching "+browser+" browser ***********");
+            logger.info("*********** Launching "+ browser +" browser ***********");
             driver = new RemoteWebDriver(new URL(utilities.getProperty(pathToConfigurationProperties, "SeleniumGridURL")),  capabilityFactory.getCapabilities(browser));
         } catch (MalformedURLException e) {
             logger.error("*********** Failed to launch "+browser+" browser ***********");
@@ -40,11 +40,17 @@ public class DriverFactory {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
-        driver.navigate().to(utilities.getProperty(pathToConfigurationProperties, "ApplicationURL"));
+        driver.navigate().to(utilities.getProperty(pathToConfigurationProperties, environment));
     }
 
     public void driverTearDown() {
         logger.info("*********** Closing browser ***********");
+        driver.close();
+    }
+
+    public void quitDriver() {
+        logger.info("*********** Quitting browser ***********");
         driver.quit();
     }
+
 }
