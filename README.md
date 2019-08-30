@@ -62,13 +62,13 @@ Execution of tests in default environment (QA is the default environment) and de
 $ mvn clean test
 
 # To execute tests in DEV environment and Firefox browser
-$ mvn clean test  -Denvironment=DEV -DsuiteXmlFile=firefox.xml
+$ mvn clean test -Denvironment=DEV -DsuiteXmlFile=firefox.xml
 
 # To execute tests in Chrome and Firefox browsers parallely
 $ mvn clean test -DsuiteXmlFile=parallel.xml
 
 ```
- **Congrats!** Now your tests are up and running!
+ **Congrats!** Now the tests are up and running!
  
  *Watch Live Execution in Selenium GRID* - http://localhost:4444/grid/admin/live/ 
  
