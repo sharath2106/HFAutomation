@@ -24,6 +24,11 @@ The automation framework used for the task uses the following languages/tools to
 * [WebdriverManager] - Library used to automate the management of binary drivers
 * [Jackson YAML] - Used as Dataproviders for pojo classes
 * [Cluecumber] - Maven plugin used to generate reports for the tests
+
+
+### Structure of the framework
+
+<img width="335" alt="Screenshot 2019-08-30 at 7 15 51 PM" src="https://user-images.githubusercontent.com/25933070/64025582-9e02f580-cb5a-11e9-8217-ee18141193fa.png">
         
 ### How to run the tests?
 
