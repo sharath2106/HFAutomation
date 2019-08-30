@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Chrome Test Suite">
+
+    <listeners>
+        <listener class-name="runners.TestNGListener" />
+    </listeners>
+    <test name="Test execution - Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="runners.CukesTestRunner" />
+        </classes>
+    </test>
+</suite>

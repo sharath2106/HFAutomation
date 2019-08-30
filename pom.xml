@@ -9,8 +9,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>4.11</junit.version>
-    <selenium.version>3.11.0</selenium.version>
+    <environment>QA</environment>
+    <testNgDirectory>${project.basedir}/TestNG/</testNgDirectory>
+    <suiteXmlFile>${testNgDirectory}/chrome.xml</suiteXmlFile>
   </properties>
 
   <build>
@@ -31,10 +32,10 @@
         <version>2.22.2</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>testng.xml</suiteXmlFile>
+            <suiteXmlFile>${testNgDirectory}/${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
           <systemPropertyVariables>
-            <environment>{environment}</environment>
+            <environment>${environment}</environment>
           </systemPropertyVariables>
         </configuration>
       </plugin>
@@ -59,7 +60,7 @@
           <customParameters>
             <Client>HelloFresh</Client>
             <URL>http://www.automationpractice.com</URL>
-            <_Text>This HelloFresh is the leading global provider of fresh food at home. People crazy on technology and food join HelloFresh!</_Text>
+            <_Text>This HelloFresh is the leading global provider of fresh food at home. People crazy on technology and food joins "HelloFresh"!</_Text>
           </customParameters>
         </configuration>
       </plugin>
