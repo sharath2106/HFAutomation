@@ -24,6 +24,11 @@ The automation framework used for the task uses the following languages/tools to
 * [WebdriverManager] - Library used to automate the management of binary drivers
 * [Jackson YAML] - Used as Dataproviders for pojo classes
 * [Cluecumber] - Maven plugin used to generate reports for the tests
+
+
+### Structure of the framework
+
+<img width="335" alt="Screenshot 2019-08-30 at 7 15 51 PM" src="https://user-images.githubusercontent.com/25933070/64025582-9e02f580-cb5a-11e9-8217-ee18141193fa.png">
         
 ### How to run the tests?
 
@@ -43,12 +48,32 @@ $ docker pull elgalu/selenium
 $ docker pull dosel/zalenium
 
 $ docker run --rm -ti --name zalenium -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start
-
-
-# Run tests in the chosen environment (here we have selected - QA)
-$ mvn clean test -Denvironment=QA
 ```
- **Congrats!** Now your tests are up and running!
+
+There are three TestNG files configured for execution of tests in browsers (independently and parallely). It's available in the TestNG folder under the project directory. The following are the files configured - 
+
+- *chrome.xml* - Executes the tests in Chrome browser!
+- *firefox.xml* - Executes the tests in Firefox browser!
+- *parallel.xml* - Executes the tests in Chrome and Firefox browser parallely!
+
+<img width="168" alt="Screenshot 2019-08-30 at 6 37 40 PM" src="https://user-images.githubusercontent.com/25933070/64023134-46ae5680-cb55-11e9-8eb0-1a1c5614aa22.png">
+
+Execution of tests in default environment (QA is the default environment) and default browser (Chrome). The default values are set in pom.xml file and it fetches the file while execution.
+
+<img width="550" alt="Screenshot 2019-08-30 at 6 35 18 PM" src="https://user-images.githubusercontent.com/25933070/64023028-12d33100-cb55-11e9-8823-7703fdc181c3.png">
+
+```
+# To execute tests in default environment
+$ mvn clean test
+
+# To execute tests in DEV environment and Firefox browser
+$ mvn clean test -Denvironment=DEV -DsuiteXmlFile=firefox.xml
+
+# To execute tests in Chrome and Firefox browsers parallely
+$ mvn clean test -DsuiteXmlFile=parallel.xml
+
+```
+ **Congrats!** Now the tests are up and running!
  
  *Watch Live Execution in Selenium GRID* - http://localhost:4444/grid/admin/live/ 
  
