@@ -29,7 +29,7 @@ public class CheckOutPage {
     @FindBy(name = "processCarrier")
     public WebElement termsAndConditions;
 
-    @FindBy(className = "bankw0ire")
+    @FindBy(className = "bankwire")
     public WebElement bankWirePayment;
 
     @FindBy(xpath = "//*[@id='cart_navigation']/button")

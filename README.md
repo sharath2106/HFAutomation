@@ -105,7 +105,7 @@ The screenshots are generated under target -> failed-tests-screenshots directory
 - [x] Generating random values for insignificant data
 - [ ] WebDriver factory
 - [x] Encapsulation layers like test data, logic and actions on pages
-- [ ] Run tests in Parallel mode
+- [x] Run tests in Parallel mode
 - [x] Ability to run tests in different browsers
 - [x] Ability to run tests in different environments 
 - [ ] Reading test data from file in Checkout tests
